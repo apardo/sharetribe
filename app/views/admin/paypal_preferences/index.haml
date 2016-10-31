@@ -25,11 +25,6 @@
 
   .row
     .col-12
-      =t("admin.paypal_accounts.marketplace_currency_used", currency: "<strong>#{currency}</strong>",
-        contact_support_link: link_to(t("admin.paypal_accounts.contact_support_link_text"), "mailto:support@sharetribe.com")).html_safe
-
-  .row
-    .col-12
       =t("admin.paypal_accounts.integration_info_text").html_safe
 
   - if display_knowledge_base_articles
@@ -61,6 +56,12 @@
                   - if paypal_prefs_valid
                     =icon_tag("check", ["icon-fix", "paypal-success-mark"])
                   =t("admin.paypal_accounts.set_minimum_price_and_fee")
+            .row
+              .col-6
+                = form.label :marketplace_currency, t("admin.paypal_accounts.marketplace_currency_label"), class: "paypal-horizontal-input-label"
+              .col-6
+                = form.select :marketplace_currency, options_for_select(available_currencies, currency)
+
             .row
               .col-6
                 = form.label :minimum_listing_price, t("admin.paypal_accounts.minimum_listing_price_label"), class: "paypal-horizontal-input-label"
